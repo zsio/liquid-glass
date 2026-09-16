@@ -1,0 +1,14 @@
+{
+  // Cloudflare Workers 静态资源部署：无 Worker 脚本，资源请求免费且不限量。
+  // 部署：pnpm run cf:deploy（内部用 pnpm dlx wrangler，CLI 不作为仓库依赖）。
+  "name": "liquid-glass-workbench",
+  "compatibility_date": "2025-09-01",
+  "routes": [{ "pattern": "glass.zs.uy", "custom_domain": true }],
+  "workers_dev": true,
+  "assets": {
+    "directory": "./dist-static",
+    // 未知路径返回 dist-static/404.html（带 404 状态码）
+    "not_found_handling": "404-page"
+    // dist-static/_headers 会自动生效（安全头与缓存策略）
+  }
+}

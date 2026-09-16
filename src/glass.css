@@ -1,0 +1,101 @@
+/* Component-only styles. No body styles or demo coordinates. */
+.lg {
+  --lg-radius: 40px; --lg-tint: rgba(255,255,255,.018);
+  --lg-pointer-x:28%; --lg-pointer-y:12%;
+  position:relative; border-radius:var(--lg-radius);
+  /* Do not apply opacity/filter to the host: preserve the real backdrop. */
+  box-shadow:0 24px 36px -20px rgba(31,42,58,.23),0 8px 16px -10px rgba(31,42,58,.19);
+  transition:box-shadow .2s ease;
+}
+.lg-surface,.lg-light,.lg-sheen {
+  position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+}
+.lg-surface {z-index:0;background:var(--lg-tint);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.lg-light {z-index:1;background-size:100% 100%;background-repeat:no-repeat}
+.lg-light::after {
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:radial-gradient(ellipse at var(--lg-pointer-x) var(--lg-pointer-y),
+    rgba(255,255,255,.68),rgba(255,255,255,.15) 38%,transparent 68%);
+  -webkit-mask-image:var(--lg-rim-mask,linear-gradient(transparent,transparent));mask-image:var(--lg-rim-mask,linear-gradient(transparent,transparent));
+  -webkit-mask-size:100% 100%;mask-size:100% 100%;
+}
+.lg-sheen {
+  z-index:2;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.075),transparent 24%,transparent 77%,rgba(255,255,255,.018)),
+    radial-gradient(ellipse at var(--lg-pointer-x) var(--lg-pointer-y),rgba(255,255,255,.042),transparent 57%);
+}
+.lg-content {position:relative;z-index:3;border-radius:inherit}
+.lg:focus-visible,.lg:has(:focus-visible) {outline:2px solid #3463ce;outline-offset:5px}
+.lg[data-glass-renderer=solid] > .lg-surface {background:var(--lg-solid,#e9ecf1)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.lg[data-glass-renderer=solid] > .lg-light,.lg[data-glass-renderer=solid] > .lg-sheen {display:none}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {.lg-surface{background:var(--lg-solid,#e9ecf1)}}
+@media (prefers-reduced-transparency:reduce),(prefers-contrast:more) {
+ .lg-surface {background:var(--lg-solid,#e9ecf1)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ .lg-light,.lg-sheen {display:none}
+}
+@media (forced-colors:active) {
+ .lg {outline:1px solid CanvasText;color:CanvasText}
+ .lg-surface {background:Canvas!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ .lg-light,.lg-sheen {display:none}
+}
+@media (prefers-reduced-motion:reduce) {.lg,.lg *{transition:none!important;animation:none!important}}
+/* Product-scale controls. Material is decorative; native elements own input. */
+.lg-button {display:inline-block;vertical-align:middle;color:inherit;box-shadow:0 5px 12px -7px rgba(25,36,55,.28),0 1px 2px rgba(25,36,55,.055)}
+.lg-button button {box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 15px;font:inherit;font-size:12px;font-weight:550;line-height:1;color:inherit;cursor:pointer;border:0;background:transparent;border-radius:inherit;-webkit-tap-highlight-color:transparent;transition:background .15s,transform .15s}
+.lg-button button:hover:not(:disabled) {background:rgba(255,255,255,.16)}
+.lg-button button:active:not(:disabled){transform:translateY(.5px)}
+.lg-button button:disabled {cursor:not-allowed;color:var(--lg-disabled-color,#89929e)}
+.lg-button[data-size=sm] button{min-height:30px;padding:0 11px;font-size:11px;gap:6px}
+.lg-button[data-size=lg] button{min-height:42px;padding:0 19px;font-size:13px}
+.lg-button[data-size=icon] button{height:34px;min-height:34px;width:34px;padding:0}
+.lg-button[data-variant=accent] {color:#fff;--lg-solid:#465e89}
+.lg-button[data-variant=accent] .lg-surface{background:rgba(38,61,100,.72)}
+.lg-button button svg,.lg-toolbar button svg,.lg-chip svg{width:15px;height:15px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.lg-button button[aria-pressed=true]{color:var(--lg-accent,#49668d);background:rgba(255,255,255,.28)}
+.lg-button button[aria-pressed=true] .heart-icon {fill:rgba(190,102,126,.3);color:#bb657d}
+.lg-switch {--p:0;position:relative;box-sizing:border-box;display:inline-block;vertical-align:middle;width:44px;height:44px;flex-shrink:0;border:0;padding:0;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;color:inherit;border-radius:15px}
+.lg-switch[aria-checked=true] {--p:1}
+.lg-switch-track{position:absolute;inset:9px 0;border-radius:99px;background:rgba(113,124,142,.27);box-shadow:inset 0 0 0 .7px rgba(40,52,68,.10),inset 0 1px 2px rgba(40,52,68,.055);transition:background .22s}
+.lg-switch[aria-checked=true] .lg-switch-track{background:#37b770;box-shadow:inset 0 0 0 .65px rgba(11,130,63,.24)}
+.lg-switch .lg-switch-thumb{position:absolute;left:2px;top:11px;width:22px;height:22px;transform:translateX(calc(var(--p)*18px));transition:transform .28s cubic-bezier(.22,.8,.27,1),box-shadow .2s;pointer-events:none;box-shadow:0 1px 3px rgba(21,47,42,.20)}
+.lg-switch .lg-switch-thumb .lg-surface{background:rgba(255,255,255,.85)}
+.lg-switch:disabled{cursor:not-allowed}
+.lg-switch:disabled .lg-switch-track{background:#adb5bd}
+.lg-switch:disabled .lg-switch-thumb .lg-surface{background:#dde1e6}
+.lg-range{--thumb:22px;--p:.5;--lg-accent:#647a99;position:relative;box-sizing:border-box;height:36px;min-width:70px;color:inherit}
+.lg-range-track{position:absolute;left:calc(var(--thumb)/2);right:calc(var(--thumb)/2);top:16px;height:4px;background:rgba(84,103,131,.18);border-radius:8px;box-shadow:inset 0 .5px 0 rgba(28,42,59,.06)}
+.lg-range-fill{height:100%;width:calc(var(--p)*100%);background:var(--lg-accent);border-radius:inherit}
+.lg-range .lg-range-thumb{position:absolute;left:calc(var(--p)*(100% - var(--thumb)));top:7px;width:var(--thumb);height:22px;pointer-events:none;box-shadow:0 2px 5px rgba(28,42,59,.14)}
+.lg-range .lg-range-thumb .lg-surface{background:rgba(255,255,255,.48)}
+.lg-range input{position:absolute;inset:-4px 0;width:100%;height:44px;margin:0;padding:0;opacity:0;appearance:none;-webkit-appearance:none;cursor:ew-resize;touch-action:pan-y;background:transparent;z-index:5}
+.lg-range input::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:var(--thumb);height:36px;border:0;background:transparent}
+.lg-range input::-moz-range-thumb{width:var(--thumb);height:36px;border:0;background:transparent}
+.lg-range:has(input:focus-visible) .lg{outline:2px solid var(--lg-focus,#647a99);outline-offset:3px}
+.lg-range input:disabled{cursor:not-allowed}
+.lg-range:has(input:disabled) .lg-range-fill{background:#aab2bd}
+.lg-segmented {display:inline-block;border-radius:13px;box-shadow:0 4px 12px -8px rgba(23,36,52,.23);color:inherit}
+.lg-segmented .lg-content {display:flex;align-items:center;padding:3px;gap:2px}
+.lg-segmented button{box-sizing:border-box;position:relative;flex:1;min-width:52px;height:30px;border:0;border-radius:10px;padding:0 14px;background:transparent;font:inherit;font-size:11px;color:inherit;cursor:pointer;white-space:nowrap;transition:background .18s,box-shadow .18s}
+.lg-segmented button[aria-checked=true]{background:rgba(255,255,255,.5);box-shadow:0 1px 3px rgba(34,48,72,.09),inset 0 .5px 0 rgba(255,255,255,.8);font-weight:600}
+.lg-segmented button:disabled{color:#98a1ad;cursor:not-allowed}
+.lg-chip{display:inline-block;box-shadow:0 2px 6px -4px rgba(32,47,66,.22);color:inherit}
+.lg-chip button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:5px;min-height:28px;padding:0 11px;border-radius:inherit;border:0;background:transparent;font:inherit;font-size:11px;color:inherit;cursor:pointer;white-space:nowrap;transition:background .16s}
+.lg-chip button[aria-pressed=true]{background:rgba(255,255,255,.44);box-shadow:inset 0 0 0 .6px rgba(255,255,255,.55)}
+.lg-chip button:not([aria-pressed=true]) .chip-check{display:none}
+.lg-chip button:disabled{cursor:not-allowed;color:#909cab}
+.lg-toolbar{display:inline-block;box-shadow:0 7px 18px -11px rgba(27,40,60,.32);color:inherit}
+.lg-toolbar .lg-content{display:flex;align-items:center;padding:4px;gap:3px}
+.lg-toolbar button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:31px;height:31px;padding:0;border:0;border-radius:9px;background:transparent;color:inherit;cursor:pointer;transition:background .15s}
+.lg-toolbar button:hover:not(:disabled),.lg-toolbar button[aria-pressed=true]{background:rgba(255,255,255,.46);box-shadow:inset 0 .6px 0 rgba(255,255,255,.5)}
+.lg-toolbar button:disabled{color:#99a5b4;cursor:not-allowed}
+.lg-toolbar-separator{display:block;height:16px;width:1px;background:currentColor;opacity:.16;margin:0 3px;flex-shrink:0}
+.lg-switch:focus-visible,.lg-button button:focus-visible,.lg-segmented button:focus-visible,.lg-chip button:focus-visible,.lg-toolbar button:focus-visible{outline:2px solid var(--lg-focus,#647a99);outline-offset:3px}
+.lg-button:has(button:focus-visible),.lg-chip:has(button:focus-visible),.lg-toolbar:has(button:focus-visible),.lg-segmented:has(button:focus-visible){outline:none}
+@media(pointer:coarse){.lg-button button{min-height:42px}.lg-button[data-size=icon] button{width:42px;height:42px}.lg-chip button{min-height:40px}.lg-segmented button{height:38px}.lg-toolbar button{height:38px;width:38px}}
+@media(forced-colors:active){.lg-switch-track{background:Canvas!important;border:1px solid ButtonText}.lg-switch[aria-checked=true] .lg-switch-track{background:Highlight!important}.lg-range-fill{background:Highlight}.lg-range-track{background:GrayText}.lg-segmented button[aria-checked=true],.lg-chip button[aria-pressed=true],.lg-toolbar button[aria-pressed=true]{outline:1px solid Highlight}.lg-button[data-variant=accent]{color:ButtonText}}
+
+/* Opt out per instance, not globally: actual controls retain keyboard focus. */
+.lg[data-focus-ring="none"]:focus,
+.lg[data-focus-ring="none"]:focus-visible,
+.lg[data-focus-ring="none"]:has(:focus-visible) {outline:none!important;}

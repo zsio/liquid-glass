@@ -1,0 +1,49 @@
+[
+  {
+    "id": "yunxi",
+    "label": "云曦",
+    "code": "01 / YUNXI",
+    "type": "wallpaper",
+    "tone": "dark",
+    "src": "./assets/wallpapers/yunxi.webp",
+    "thumb": "./assets/thumbnails/yunxi.webp"
+  },
+  {
+    "id": "wufeng",
+    "label": "雾枫",
+    "code": "02 / WUFENG",
+    "type": "wallpaper",
+    "tone": "dark",
+    "src": "./assets/wallpapers/wufeng.webp",
+    "thumb": "./assets/thumbnails/wufeng.webp"
+  },
+  {
+    "id": "huayu",
+    "label": "花语",
+    "code": "03 / HUAYU",
+    "type": "wallpaper",
+    "tone": "dark",
+    "src": "./assets/wallpapers/huayu.webp",
+    "thumb": "./assets/thumbnails/huayu.webp"
+  },
+  {
+    "id": "pearl-motion",
+    "label": "柔光流动",
+    "code": "MOTION / 08 SEC",
+    "type": "video",
+    "tone": "dark",
+    "src": "./assets/videos/pearl-motion.mp4",
+    "poster": "./assets/posters/pearl-motion.webp",
+    "thumb": "./assets/thumbnails/pearl-motion.webp"
+  },
+  {
+    "id": "cloud-motion",
+    "label": "云纱慢舞",
+    "code": "MOTION / 08 SEC",
+    "type": "video",
+    "tone": "dark",
+    "src": "./assets/videos/cloud-motion.mp4",
+    "poster": "./assets/posters/cloud-motion.webp",
+    "thumb": "./assets/thumbnails/cloud-motion.webp"
+  }
+]

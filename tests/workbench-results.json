@@ -1,0 +1,404 @@
+{
+  "reactInput": "/mnt/data/glass-repair/react-harness",
+  "browser": "144.0.7559.96",
+  "runtime": "React 19.1.1 production (offline test harness, not Vite build)",
+  "passed": 75,
+  "tests": [
+    {
+      "test": "React default is full workbench",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Inspector is present and visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Inspector is on the right at desktop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Four optical parameters exposed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Default actual wallpaper decoded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Eleven mounted material instances",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "SVG material active",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Dragging state changes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Pointer drag changes card position",
+      "passed": true,
+      "detail": [
+        {
+          "x": 465.765625,
+          "y": 405.921875,
+          "width": 310,
+          "height": 198
+        },
+        {
+          "x": 390.765625,
+          "y": 442.921875,
+          "width": 310,
+          "height": 198
+        }
+      ]
+    },
+    {
+      "test": "Pointer drag has no blue focus ring",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Keyboard ArrowRight moves 10px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shift ArrowDown moves 30px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Keyboard keeps card ring removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Home restores default card position",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "React parameter updates refraction",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "React parameter updates bevel",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "React parameter updates blur",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "React parameter updates dispersion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Refraction updates actual filter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Blur updates actual filter",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shape switch circle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shape switch pill",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shape switch card",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Foreground text toggle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "CSS mode reaches every material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "SVG mode restored",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Reset restores all parameters",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper mist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper mint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper cloud",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper pearl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Parameter actually changes refracted pixels",
+      "passed": true,
+      "detail": 0.9352496674153189
+    },
+    {
+      "test": "Text background visible",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Spectrum palette changes visible background",
+      "passed": true,
+      "detail": 39.24522936224531
+    },
+    {
+      "test": "Real video plays behind card",
+      "passed": true,
+      "detail": {
+        "w": 960,
+        "time": 0.767429,
+        "paused": false,
+        "muted": true,
+        "loop": true
+      }
+    },
+    {
+      "test": "Video is muted looping",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Pause button stops video time",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Resume button resumes video",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Second video loads",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Leaving video pauses it",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Reduced motion prevents autoplay",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Explicit video play under reduced motion",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Local image import preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Local video import preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Corrupt import keeps previous background",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Six compact controls preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Button decorative line remains removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Button state updates with click and key",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Cancel resets state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Favorite toggles",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Switches remain independent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider reaches maximum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider reaches minimum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Segmented arrow navigation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Chips multi-select",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Toolbar selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Toolbar arrow focus",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Toolbar reset",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Sample background tone toggle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No extra filter instances after updates",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Layout matches full static workbench 320px",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "test": "No horizontal overflow 320px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Layout matches full static workbench 390px",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "test": "No horizontal overflow 390px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Layout matches full static workbench 768px",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "test": "No horizontal overflow 768px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Layout matches full static workbench 1024px",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "test": "No horizontal overflow 1024px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Layout matches full static workbench 1440px",
+      "passed": true,
+      "detail": 0
+    },
+    {
+      "test": "No horizontal overflow 1440px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Forced-colors fallback preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "React subdirectory image loads",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "React subdirectory video loads",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No relative path resource failures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "test": "No browser application exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "pageErrors": [],
+  "missingResources": []
+}

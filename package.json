@@ -1,0 +1,29 @@
+{
+  "name": "liquid-glass-workbench",
+  "version": "3.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build && node scripts/check-build.mjs dist",
+    "test:browser": "python tests/static_browser.py",
+    "registry": "node scripts/registry.mjs",
+    "site:build": "node scripts/build-static.mjs && node scripts/check-build.mjs dist-static",
+    "media:build": "python scripts/create-light-media.py",
+    "site:test": "python tests/static_browser.py",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test:react": "python tests/react_browser.py",
+    "cf:deploy": "pnpm site:build && pnpm dlx wrangler deploy"
+  },
+  "dependencies": {
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.9",
+    "typescript": "5.9.2",
+    "vite": "6.3.6"
+  }
+}

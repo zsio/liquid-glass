@@ -1,0 +1,68 @@
+{
+  "tsxSyntax": [
+    {
+      "file": "src/components/LiquidGlass.tsx",
+      "diagnostics": [],
+      "passed": true
+    },
+    {
+      "file": "src/GlassStudio.tsx",
+      "diagnostics": [],
+      "passed": true
+    },
+    {
+      "file": "src/Icons.tsx",
+      "diagnostics": [],
+      "passed": true
+    },
+    {
+      "file": "src/hooks/useDraggableGlass.ts",
+      "diagnostics": [],
+      "passed": true
+    },
+    {
+      "file": "src/hooks/useStudioMedia.ts",
+      "diagnostics": [],
+      "passed": true
+    },
+    {
+      "file": "src/glass.ts",
+      "diagnostics": [],
+      "passed": true
+    },
+    {
+      "file": "src/main.tsx",
+      "diagnostics": [],
+      "passed": true
+    }
+  ],
+  "registry": [
+    {
+      "test": "3 self-contained files",
+      "passed": true
+    },
+    {
+      "test": "No additional runtime library",
+      "passed": true
+    },
+    {
+      "test": "Engine source identical",
+      "passed": true
+    },
+    {
+      "test": "CSS source identical",
+      "passed": true
+    },
+    {
+      "test": "Component imports local engine and CSS",
+      "passed": true
+    },
+    {
+      "test": "No demonstration media installed by registry",
+      "passed": true
+    }
+  ],
+  "scope": "Syntax and registry checks only; runtime results are in workbench-results.json",
+  "fullReactTypecheck": false,
+  "cliInstalled": false
+}

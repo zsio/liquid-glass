@@ -1,0 +1,460 @@
+{
+  "browser": "144.0.7559.96",
+  "checks": [
+    {
+      "test": "Default wallpaper actually decodes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Main refraction uses SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "11 unique material instances",
+      "passed": true,
+      "detail": 11
+    },
+    {
+      "test": "Video stays dormant until selected",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "4 wallpaper thumbnails",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper selection mist",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper selection mint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper selection cloud",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper selection pearl",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Wallpaper pixels change through the lens",
+      "passed": true,
+      "detail": 16.14972504537694
+    },
+    {
+      "test": "Media changes reuse displacement texture",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "6 compact control families",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Removed artificial line behind button",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Button is 36px high",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Switch track is 44 x 26",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Switch keeps a 44px hit target",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider knob is 22 x 22",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Button mouse and keyboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Cancel resets example action",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Icon button toggles favorite",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Both switches have independent state",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Switch keyboard toggles back",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider maximum",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider thumb aligns with max endpoint",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider minimum and position",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Slider ArrowRight increment",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Segmented arrow selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Segmented End key",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Segmented has exactly one tab stop",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Chip multi-selection",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Chip deselection via keyboard",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Toolbar choice",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Toolbar roving focus",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Toolbar reset works",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Sample dark surface toggle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Reset restores controls and background",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shape selection circle",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shape selection pill",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Shape selection card",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Card really moves",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No ring during pointer focus",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Keyboard move keeps ring removed",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Grid refraction remains real",
+      "passed": true,
+      "detail": 0.9370216570526804
+    },
+    {
+      "test": "CSS fallback reaches all materials",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Restore SVG mode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "DOM text backdrop preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Spectrum palette toggle preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Real MP4 video decodes and plays",
+      "passed": true,
+      "detail": {
+        "time": 0.75698,
+        "paused": false,
+        "w": 960,
+        "muted": true,
+        "loop": true,
+        "inline": true,
+        "error": null
+      }
+    },
+    {
+      "test": "Silent looping inline video",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "2 video thumbnails",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Video pause is real",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Video frames refract under glass",
+      "passed": true,
+      "detail": 6.876736307475212
+    },
+    {
+      "test": "Video needs no JS per-frame texture regeneration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Video resume works",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Second MP4 video plays",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Leaving video pauses decoding",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Reduced motion does not auto-play",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Reduced motion still allows explicit play",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Hidden page pauses video",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Previously playing video resumes on visibility",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Local image import uses blob, no upload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Replacing imported image releases prior URL",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Local MP4 import really plays",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Corrupt video reports failure, retains prior scene",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Unsupported import gets useful error",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No horizontal overflow 320px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Lens stays inside stage 320px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No horizontal overflow 390px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Lens stays inside stage 390px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No horizontal overflow 768px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Lens stays inside stage 768px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No horizontal overflow 1024px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Lens stays inside stage 1024px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No horizontal overflow 1440px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Lens stays inside stage 1440px",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Forced colors use solid material",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Forced colors honor system text color",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "No third-party network requests",
+      "passed": true,
+      "detail": 24
+    },
+    {
+      "test": "All local URLs resolve, including CSS background URLs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "test": "No runtime JS errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "test": "Dispose removes all material SVGs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Dispose pauses and detaches video",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Imported object URLs released on dispose",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Subdirectory image decodes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Subdirectory image URL follows mount",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Subdirectory CSS background follows mount",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Subdirectory MP4 decodes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Subdirectory MP4 URL follows mount",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "test": "Nested mount has no missing media",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "passed": 89,
+  "total": 89
+}
