@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, RefObject } from 'react';
 import {
   LiquidGlass, GlassButton, GlassIconButton, GlassSwitch, GlassSlider,
   GlassSegmented, GlassChip, GlassToolbar, GlassToolbarSeparator,
@@ -28,6 +28,19 @@ function backgroundStyle(src: string): CSSProperties {
   // CSS URL resolution must not accidentally be relative to the hashed CSS file.
   const resolved = typeof document === 'undefined' ? src : new URL(src, document.baseURI).href;
   return { backgroundImage: `url("${resolved}")` };
+}
+
+// Video clock updates remain local instead of rendering the entire workbench.
+function VideoTime({video,hidden}:{video:RefObject<HTMLVideoElement|null>;hidden:boolean}){
+  const [time,setTime]=useState(0);
+  useEffect(()=>{
+    const el=video.current;if(!el)return;
+    const update=()=>setTime(Number.isFinite(el.currentTime)?Math.floor(el.currentTime):0);
+    const reset=()=>setTime(0);
+    el.addEventListener('timeupdate',update);el.addEventListener('emptied',reset);update();
+    return ()=>{el.removeEventListener('timeupdate',update);el.removeEventListener('emptied',reset);};
+  },[video]);
+  return <span id="media-time" className="media-time" hidden={hidden}>{String(Math.floor(time/60)).padStart(2,'0')}:{String(time%60).padStart(2,'0')}</span>;
 }
 
 /** Default app: the complete workbench, not the removed minimal ReactExample. */
@@ -59,7 +72,6 @@ export default function GlassStudio() {
     setClicks(0); setClickStatus('READY'); setSaved(false); setNotify(true); setFocus(false);
     setBrightness(48); setSegment('recent'); setTags(['设计']); setTool('cursor'); setSampleDark(false);
   }
-  const time = Number.isFinite(media.time) ? Math.floor(media.time) : 0;
   const sampleStyle = { '--sample-wallpaper': backgroundStyle(media.samplePoster).backgroundImage } as CSSProperties;
   return <>
     <IconDefinitions />
@@ -82,7 +94,7 @@ export default function GlassStudio() {
               </LiquidGlass>
               <div className="scene-caption" aria-hidden="true"><b id="scene-name">{media.active?.code || 'LOCAL / MEDIA'}</b><span id="scene-description">{media.active?.label}{media.backdrop === 'video' ? ' · 浅色动态影像' : ' · 浅色壁纸'}</span></div>
               <div className="media-filmstrip" id="media-filmstrip" role="group" aria-label="选择背景素材">{media.candidates.map(item => <button key={item.id} type="button" className="media-thumb" data-media-id={item.id} aria-label={item.label} title={`${item.label} · ${item.type === 'video' ? '视频' : '壁纸'}`} aria-pressed={media.active?.id === item.id} style={item.thumb || item.poster ? backgroundStyle(item.thumb || item.poster!) : undefined} onClick={() => media.select(item)}>{item.type === 'video' && <Icon name="play" />}</button>)}</div>
-              <div className="media-controls"><span id="media-time" className="media-time" hidden={media.backdrop !== 'video'}>{String(Math.floor(time / 60)).padStart(2, '0')}:{String(time % 60).padStart(2, '0')}</span><button id="media-play" className="media-play" type="button" aria-label={media.playing ? '暂停背景视频' : '播放背景视频'} hidden={media.backdrop !== 'video'} onClick={media.togglePlay}><Icon name={media.playing ? 'pause' : 'play'} /></button></div>
+              <div className="media-controls"><VideoTime video={media.video} hidden={media.backdrop !== 'video'} /><button id="media-play" className="media-play" type="button" aria-label={media.playing ? '暂停背景视频' : '播放背景视频'} hidden={media.backdrop !== 'video'} onClick={media.togglePlay}><Icon name={media.playing ? 'pause' : 'play'} /></button></div>
             </div>
             <div className="viewport-bottom"><span id="media-status" role="status">{media.status}</span><div className="bottom-actions"><button type="button" className="plain-button" id="tone-toggle" aria-label="切换卡片文字明暗" title="切换卡片文字明暗" onClick={media.toggleTone}><Icon name="half" /></button><button type="button" className="plain-button" id="change-color" hidden={media.isMedia} onClick={media.nextPalette}><Icon name="swap" />换一组颜色</button><button type="button" className="plain-button" id="import-media" onClick={() => media.file.current?.click()}><Icon name="upload" /><span id="upload-label">导入图片 / 视频</span></button><input ref={media.file} id="media-file" className="file-input" tabIndex={-1} type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif,video/mp4,video/webm,video/quicktime" aria-label="选择本地背景文件" onChange={media.importFile} /></div></div>
           </section>

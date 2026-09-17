@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
+import { setLiquidGlassPosition } from '../glass';
 import type { KeyboardEvent, PointerEvent, RefObject } from 'react';
 
 type Point = { x: number; y: number };
@@ -13,28 +14,40 @@ export function useDraggableGlass(
   const moved = useRef(false);
   const drag = useRef<{ id: number; start: Point; origin: Point } | null>(null);
   const [dragging, setDragging] = useState(false);
+  // Cached drag bounds: reading clientWidth/offsetWidth on every pointermove
+  // forces synchronous layout; sizes only change on resize or shape switches.
+  const limits = useRef<{ maxX: number; maxY: number } | null>(null);
 
-  function position(x: number, y: number) {
+  function constraints() {
     const s = stage.current, l = lens.current;
-    if (!s || !l) return;
-    const maxX = Math.max(12, s.clientWidth - l.offsetWidth - 12);
-    const maxY = Math.max(12, s.clientHeight - l.offsetHeight - 12);
-    point.current = { x: Math.max(12, Math.min(x, maxX)), y: Math.max(12, Math.min(y, maxY)) };
-    l.style.left = `${point.current.x}px`;
-    l.style.top = `${point.current.y}px`;
+    if (!s || !l) return null;
+    if (!limits.current) {
+      limits.current = {
+        maxX: Math.max(12, s.clientWidth - l.offsetWidth - 12),
+        maxY: Math.max(12, s.clientHeight - l.offsetHeight - 12),
+      };
+    }
+    return limits.current;
+  }
+  function position(x: number, y: number) {
+    const c = constraints();
+    if (!c) return;
+    point.current = { x: Math.max(12, Math.min(x, c.maxX)), y: Math.max(12, Math.min(y, c.maxY)) };
+    if (lens.current) setLiquidGlassPosition(lens.current, point.current.x, point.current.y);
   }
   function center() {
     const s = stage.current, l = lens.current;
     if (s && l) position((s.clientWidth - l.offsetWidth) * .57, (s.clientHeight - l.offsetHeight) * .57);
   }
   useLayoutEffect(() => {
+    limits.current = null;
     moved.current = false;
     drag.current = null;
     setDragging(false);
     center();
   }, [resetKey]);
   useLayoutEffect(() => {
-    const resize = () => moved.current ? position(point.current.x, point.current.y) : center();
+    const resize = () => { limits.current = null; moved.current ? position(point.current.x, point.current.y) : center(); };
     resize();
     const observer = new ResizeObserver(resize);
     if (stage.current) observer.observe(stage.current);

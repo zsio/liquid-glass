@@ -20,7 +20,7 @@ export function useStudioMedia() {
   const [custom, setCustom] = useState<Partial<Record<'wallpaper' | 'video', MediaItem>>>({});
   const [tone, setTone] = useState<'light' | 'dark'>('dark');
   const [palette, setPalette] = useState(0);
-  const [playing, setPlaying] = useState(false), [time, setTime] = useState(0);
+  const [playing, setPlaying] = useState(false);
   const [failure, setFailure] = useState(false), [status, setStatus] = useState('背景折射，前景文字保持清晰。');
   const [toast, setToast] = useState('');
   const [samplePoster, setSamplePoster] = useState('./assets/wallpapers/yunxi.webp');
@@ -78,7 +78,7 @@ export function useStudioMedia() {
     playTicket.current++;
     explicitlyPlayed.current = false;
     wasPlaying.current = false;
-    setFailure(false); setTime(0); setPlaying(false);
+    setFailure(false); setPlaying(false);
     setTone(active?.tone || 'dark');
     if (poster) setSamplePoster(poster);
     if (backdrop === 'video') {
@@ -148,11 +148,10 @@ export function useStudioMedia() {
     select(item: MediaItem) { setSelection(s => ({ ...s, [item.type]: item.id })); setBackdrop(item.type); },
     tone, toggleTone: () => setTone(t => t === 'dark' ? 'light' : 'dark'),
     palette: palettes[palette], nextPalette: () => setPalette(p => (p + 1) % palettes.length),
-    video, file, playing, time, failure, status, toast, samplePoster, importFile, reset,
+    video, file, playing, failure, status, toast, samplePoster, importFile, reset,
     togglePlay() { const el = video.current; if (!el) return; if (el.paused) void play(true); else { el.pause(); setStatus(`${latest.current.label} · 已暂停`); } },
     videoEvents: {
       onPlay: () => setPlaying(true), onPause: () => setPlaying(false),
-      onTimeUpdate: () => setTime(video.current?.currentTime || 0),
       onError: () => { if (latest.current.backdrop === 'video') { setFailure(true); setStatus('此视频无法解码 · 已保留静态封面'); setToast('视频解码失败，试试导入其他 MP4 / WebM 视频。'); } },
     },
     imageError: () => { if (backdrop === 'wallpaper') setStatus('图片加载失败 · 请重新选择素材'); },
