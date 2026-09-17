@@ -1,4 +1,13 @@
 import { defineConfig } from "vite";
 
-// Full workbench by default. Static export uses dist-static and never overwrites this.
-export default defineConfig({ base: "./", build: { outDir: "dist", emptyOutDir: true } });
+export default defineConfig({
+  base: "./",
+  resolve: {
+    alias: { "@/components/ui/liquid-glass": new URL("./src/components/LiquidGlass.tsx", import.meta.url).pathname },
+  },
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+    rollupOptions: { input: { main: "index.html", examples: "examples/index.html" } },
+  },
+});

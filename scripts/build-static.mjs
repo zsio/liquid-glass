@@ -7,6 +7,8 @@ const root=resolve(import.meta.dirname,'..');
 const out=resolve(root,'dist-static');
 rmSync(out,{recursive:true,force:true});mkdirSync(resolve(out,'assets'),{recursive:true});
 cpSync(resolve(root,'public/assets'),resolve(out,'assets'),{recursive:true});
+cpSync(resolve(root,'public/r'),resolve(out,'r'),{recursive:true});
+cpSync(resolve(root,'public/INSTALL.md'),resolve(out,'INSTALL.md'));
 const read=p=>readFileSync(resolve(root,p),'utf8');
 const catalog=JSON.parse(read('public/assets/media.json'));
 for(const item of catalog){
@@ -29,6 +31,15 @@ writeFileSync(resolve(out,'_headers'),`/*
 /
   Cache-Control: no-cache
 /index.html
+  Cache-Control: no-cache
+/r/*
+  Cache-Control: no-cache
+  Access-Control-Allow-Origin: *
+/INSTALL.md
+  Cache-Control: no-cache
+/examples/
+  Cache-Control: no-cache
+/examples/index.html
   Cache-Control: no-cache
 /assets/app.js
   Cache-Control: no-cache

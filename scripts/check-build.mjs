@@ -20,3 +20,20 @@ for (const item of media) for (const key of ['src', 'thumb', 'poster']) {
 }
 if (!existsSync(join(output, 'index.html'))) throw new Error('No index.html');
 console.log(`Verified ${target}: full workbench entry, inspector, drag handling, parameters and all media.`);
+
+const registry = JSON.parse(readFileSync(join(output, 'r/liquid-glass.json'), 'utf8'));
+const expected = JSON.parse(readFileSync(join(root, 'registry/liquid-glass.json'), 'utf8'));
+if (JSON.stringify(registry) !== JSON.stringify(expected)) throw new Error('Registry output is stale');
+if (!existsSync(join(output, 'INSTALL.md'))) throw new Error('Installation guide missing');
+for (const file of registry.files) {
+  if (!file.target.startsWith('@ui/liquid-glass/') || typeof file.content !== 'string') throw new Error('Invalid registry file');
+}
+console.log(`Verified ${target}: public shadcn registry and installation guide.`);
+
+const examplesEntry=join(output,'examples/index.html');
+if(!existsSync(examplesEntry))throw new Error('Examples route missing');
+const exampleHtml=readFileSync(examplesEntry,'utf8');
+for(const match of exampleHtml.matchAll(/(?:src|href)="([^"#]+\.(?:js|css))"/g)){
+  if(!existsSync(resolve(output,'examples',match[1])))throw new Error(`Missing examples asset: ${match[1]}`);
+}
+console.log(`Verified ${target}: /examples/ route and its JS/CSS assets.`);

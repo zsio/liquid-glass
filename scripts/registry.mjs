@@ -13,9 +13,16 @@ const item={
   name:'liquid-glass',type:'registry:block',title:'Liquid Glass',
   description:'Original DOM backdrop material and compact React controls: button, icon button, switch, slider, segmented choice, chips and toolbar. CSS fallback; no third-party optical engine.',
   dependencies:[],registryDependencies:[],files,
-  docs:'Import from your configured ui alias plus /liquid-glass. CSS is imported by the component. This is a local registry item, not a published shadcn built-in. Enhanced rendering tested in Chromium only. Set focusRing="none" to suppress the wrapper outline.',
-  meta:{version:'3.2.0',engine:'CSS + SVG + Canvas',cliTested:false},
+  docs:'Import LiquidGlass or GlassButton from your configured ui alias + /liquid-glass. Styles and the rendering engine are included automatically. Usage: https://glass.zs.uy/INSTALL.md. Chromium uses enhanced refraction; other browsers use CSS glass.',
+  meta:{version:JSON.parse(read('package.json')).version,engine:'CSS + SVG + Canvas'},
 };
 mkdirSync(resolve(root,'registry'),{recursive:true});
 writeFileSync(resolve(root,'registry/liquid-glass.json'),JSON.stringify(item,null,2)+'\n');
-console.log('Created registry/liquid-glass.json (3 self-contained source files).');
+const published=resolve(root,'public/r');
+mkdirSync(published,{recursive:true});
+writeFileSync(resolve(published,'liquid-glass.json'),JSON.stringify(item,null,2)+'\n');
+writeFileSync(resolve(published,'registry.json'),JSON.stringify({
+  $schema:'https://ui.shadcn.com/schema/registry.json',name:'liquid-glass',homepage:'https://glass.zs.uy',items:[item],
+},null,2)+'\n');
+writeFileSync(resolve(root,'public/INSTALL.md'),read('INSTALL.md'));
+console.log('Built liquid-glass registry and public installation files.');

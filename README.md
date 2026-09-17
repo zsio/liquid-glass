@@ -1,67 +1,79 @@
-# Liquid Glass · 完整工作台 3.4.0
+# Liquid Glass
 
-本版修复默认入口不一致：`npm run dev`、`npm run build` 打开/构建的都是 **完整 React 工作台**。
-保留左侧预览、右侧材质参数、下方六组紧凑控件，支持卡片拖动、键盘移动、背景切换及本地导入。
-不再将简化 ReactExample 作为默认入口。浅色图片和视频均在 `public/assets/`，以相对路径加载。
+真实 DOM 背景玻璃材质与 React 控件。提供透明容器、按钮、开关、滑块、分段选择、标签和工具栏；样式、纹理和生命周期由组件处理。
 
-## React 项目（默认）
+在线工作台：[glass.zs.uy](https://glass.zs.uy)。[交互示例与代码](https://glass.zs.uy/examples/)，组件使用方法见 [INSTALL.md](INSTALL.md)。
 
-```bash
-npm install
-npm run dev
-```
+## 用 shadcn 安装
 
-生产构建与本地预览：
+在已初始化 shadcn 的 React + TypeScript 项目中：
 
 ```bash
-npm run build
-npm run preview
+npx shadcn@latest add https://glass.zs.uy/r/liquid-glass.json
 ```
 
-生产输出：`dist/`。入口链为 `index.html → src/main.tsx → src/GlassStudio.tsx`。
-`build` 先做 TypeScript 类型检查，再执行 Vite，最后验证产物中存在完整工作台和全部媒体。
-目录名称固定，不需要手动替换 App 或切换路由。
+```tsx
+import { LiquidGlass, GlassButton } from "@/components/ui/liquid-glass"
 
-## 已打包静态站点
+export function Example() {
+  return (
+    <section style={{ padding: 40, background: "linear-gradient(120deg,#bce5fa,#f9d8e8)" }}>
+      <LiquidGlass contentStyle={{ padding: 24 }}>自己的内容</LiquidGlass>
+      <GlassButton>继续</GlassButton>
+    </section>
+  )
+}
+```
 
-另附的部署 ZIP 已经是完整工作台，解压后根目录含 `index.html` 和 `assets/`。
-可直接上传，不需要 npm。源码包内的同一静态产物放在 `dist-static/`。
+安装目录跟随 `components.json` 的 `aliases.ui`；按项目别名调整 import。CSS 自动导入，无需 Provider、背景截图、API Key 或演示素材。安装的是可修改的源码，不是运行时远程依赖。
+
+当前自动策略在符合条件的桌面 Chromium 开启增强折射；Safari、Firefox、iOS 默认使用 CSS 毛玻璃。玻璃背后需要有可见内容；纯色背景、祖先透明度与滤镜会影响观感。详细接口与边界见 [安装说明](INSTALL.md)。
+
+## 使用示例
+
+`examples/` 包含可直接复制的 React 示例：玻璃容器、按钮、受控设置与选择工具。运行 `pnpm dev` 后访问 `/examples/`，可切换背景、操作组件并复制其完整源码。页面展示的源码来自正在渲染的同一文件。
+
+## 本地开发工作台
 
 ```bash
-npm run site:build
+pnpm install
+pnpm dev
 ```
 
-这个可选命令只重建无框架依赖的静态工作台，输出 **dist-static/**，绝不会覆盖 React 的 **dist/**。
-两版使用同一份 `src/demo.css`、浅色媒体和材质引擎，且本轮做了布局/交互对照检查。
+`index.html → src/main.tsx → src/GlassStudio.tsx` 为完整 React 工作台入口。
 
-## 源码
+```bash
+pnpm build       # React 工作台及公开 registry，输出 dist/
+pnpm site:build  # 编译引擎、生成 registry、构建静态工作台，输出 dist-static/
+pnpm cf:deploy   # 构建静态站点并部署到现有 Cloudflare 配置
+```
+
+两个输出目录互不覆盖。`site:build` 自动从 `src/glass.ts` 编译 `lib/glass.js`，防止静态站点遗漏引擎更新。
+
+## 组件分发
+
+`pnpm registry` 从当前源码生成：
+
+- `registry/liquid-glass.json`：包含组件、引擎和样式源码的 registry item。
+- `public/r/liquid-glass.json`：公开 CLI 安装入口。
+- `public/r/registry.json`：registry 索引。
+- `public/INSTALL.md`：安装说明。
+
+`public/r/` 与 `public/INSTALL.md` 是忽略的生成文件，每次正式构建都会重建。两个站点产物均包含安装文件。安装入口使用 `no-cache`，避免同名 URL 长期返回旧源码。
+
+## 源码结构
 
 ```text
-src/
-  main.tsx                        # 默认入口，仅引用完整工作台
-  GlassStudio.tsx                 # 完整 React 页面、参数、控件
-  hooks/useDraggableGlass.ts      # 指针拖动、键盘移动、尺寸约束
-  hooks/useStudioMedia.ts         # 壁纸、视频、本地文件与生命周期
-  components/LiquidGlass.tsx      # 可复用 React 材质与控件
-  glass.ts / glass.css            # 原材质引擎及组件样式
-  demo.css                       # React / 静态页共用的完整页面样式
-  demo-body.html / demo.js        # 可选静态导出的模板与交互
-public/assets/
-  media.json                     # 两版共享的素材清单
-  wallpapers/ posters/ thumbnails/ videos/
-registry/liquid-glass.json        # 组件、引擎与样式的 shadcn 源码描述
-scripts/check-build.mjs           # 防止再次构建出简化页面
+src/components/LiquidGlass.tsx  React 公共组件
+src/glass.ts / glass.css        材质引擎与组件样式
+src/GlassStudio.tsx             React 演示工作台
+src/hooks/                     演示页拖动、媒体管理
+src/demo-body.html / demo.js    静态工作台模板与交互
+src/demo.css                   两版工作台共用的页面样式
+public/assets/                 演示页图片、视频与素材清单
+scripts/registry.mjs            源码 registry 生成
+scripts/build-static.mjs        静态站点打包
+scripts/check-build.mjs         工作台与 registry 产物检查
 ```
 
-## 操作
-
-卡片可使用鼠标或触摸拖动；方向键移动 10 px，Shift + 方向键 30 px，Home 复位。
-拖动卡片不显示蓝色焦点外圈，其他控件保留键盘焦点。
-右侧调整折射强度、曲面边缘、模糊、色散；可切换形状与 CSS 降级模式。
-重置恢复默认参数、卡片位置、背景和示例控件。
-
-## 验证边界
-
-见 `TESTING.md`。本轮 React 源码以 TypeScript 转换后，在本地可用的 React 19.1.1 生产运行时中进行了 Chromium 回归。
-**这不等同于 npm install + tsc + vite build 验证**：本环境 npm DNS 失败，完整 Vite 构建仍未实跑。
-可直接使用附带并已测试的静态部署产物。Safari、Firefox 与 Cloudflare 线上部署均未在本轮实测。
+验证记录见 [TESTING.md](TESTING.md)，部署方式见 [DEPLOY.md](DEPLOY.md)。

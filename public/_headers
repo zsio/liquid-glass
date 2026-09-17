@@ -6,3 +6,6 @@
   Cache-Control: public, max-age=3600, must-revalidate
 /assets/videos/*
   Cache-Control: public, max-age=3600, must-revalidate
+
+/r/*
+  Access-Control-Allow-Origin: *

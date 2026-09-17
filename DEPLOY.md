@@ -30,10 +30,10 @@ pnpm run cf:deploy        # 构建 dist-static 并上传
 
 ## 可选的静态源码构建
 
-- 构建命令：`node scripts/build-static.mjs`
+- 构建命令：`pnpm site:build`
 - 输出目录：`dist-static`
 
-或运行 `npm run site:build`，附加产物检查。静态脚本不需要安装 npm 依赖。
+该命令依次编译材质引擎、生成公开 registry、构建站点并检查产物；需要先安装项目依赖。
 **两个输出目录已经分开，不会互相覆盖。**
 
 ## 本地预览静态部署包
@@ -53,7 +53,8 @@ React 版运行时读取 `./assets/media.json`；初始加载采用打包时的�
 `tone: "dark"` 表示深色文字，适合浅色背景；`"light"` 表示白字。
 界面内的本地导入只是预览，不会修改服务器文件。
 
-## 限制
+## 组件安装入口
 
-没有替你创建 Cloudflare 线上部署。未运行账号登录、上传或其他外部写入。
-附带的静态部署产物已在本地 Chromium 测试；React 工程的 npm/Vite 构建限制见 TESTING.md。
+发布产物同时包含 `/r/liquid-glass.json`、`/r/registry.json` 和 `/INSTALL.md`。使用 `pnpm cf:deploy` 会同步发布工作台与 registry；请勿仅上传 `assets/`。
+
+验证范围见 `TESTING.md`。构建及 HTTP 校验不等于跨浏览器视觉验收。

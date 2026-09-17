@@ -4,17 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "tsc --noEmit && vite build && node scripts/check-build.mjs dist",
+    "dev": "node scripts/registry.mjs && vite --host 127.0.0.1",
+    "build": "node scripts/registry.mjs && tsc --noEmit && vite build && node scripts/check-build.mjs dist",
     "test:browser": "python tests/static_browser.py",
     "registry": "node scripts/registry.mjs",
-    "site:build": "node scripts/build-static.mjs && node scripts/check-build.mjs dist-static",
+    "site:build": "pnpm engine:build && pnpm registry && node scripts/build-static.mjs && node scripts/build-examples.mjs && node scripts/check-build.mjs dist-static",
     "media:build": "python scripts/create-light-media.py",
     "site:test": "python tests/static_browser.py",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "test:react": "python tests/react_browser.py",
-    "cf:deploy": "pnpm site:build && pnpm dlx wrangler deploy"
+    "cf:deploy": "pnpm site:build && pnpm dlx wrangler deploy",
+    "engine:build": "tsc src/glass.ts --target ES2020 --module ESNext --moduleResolution Bundler --skipLibCheck --declaration --outDir lib"
   },
   "dependencies": {
     "react": "19.1.1",

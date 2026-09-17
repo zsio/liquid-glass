@@ -118,7 +118,7 @@ export default function GlassStudio() {
           </div>
         </section>
       </main>
-      <footer className="footer"><span>Web 视觉近似，非 Apple 原生材质。增强折射在 Chromium 中验证；其他浏览器默认使用 CSS 降级。</span><code>LOCAL MEDIA · RELATIVE PATHS · LIGHT</code></footer>
+      <footer className="footer"><span>Web 视觉近似，非 Apple 原生材质。增强折射在 Chromium 中验证；其他浏览器默认使用 CSS 降级。</span><a href="./examples/">使用示例与代码 ↗</a></footer>
     </div>
     <div className="media-toast" id="media-toast" role="status" hidden={!media.toast}>{media.toast}</div>
   </>;

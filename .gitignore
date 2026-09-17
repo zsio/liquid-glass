@@ -7,3 +7,7 @@ coverage/
 .DS_Store
 .env
 .env.*
+
+# Generated shadcn distribution (source: registry/ and INSTALL.md)
+public/r/
+public/INSTALL.md
